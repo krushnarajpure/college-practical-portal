@@ -38,13 +38,26 @@ app.use((err, req, res, next) => {
   res.status(500).json({ message: 'Something went wrong on the server.' });
 });
 
+let initialization;
+
+export async function initializeServer() {
+  if (!initialization) {
+    initialization = Promise.all([connectDatabase(), ensureSeededData()]);
+  }
+
+  await initialization;
+}
+
+export { app };
+
 async function startServer() {
-  await connectDatabase();
-  ensureSeededData();
+  await initializeServer();
 
   app.listen(port, () => {
     console.log(`Server running on http://localhost:${port}`);
   });
 }
 
-startServer();
+if (process.env.VERCEL !== '1') {
+  startServer();
+}

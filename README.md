@@ -51,16 +51,17 @@ Use the seeded admin account from `.env`:
 - Deploy the backend and frontend separately or behind a reverse proxy.
 - Ensure uploads and PDF files are persisted appropriately.
 
-### Vercel frontend deployment
+### Single Vercel deployment
 
-Create or update the Vercel project with these settings:
+The frontend and Express API are deployed together from the repository root:
 
 - Repository: `krushnarajpure/college-practical-portal`
-- Root Directory: `frontend`
+- Root Directory: `.`
+- Production Branch: `main`
 - Install Command: `npm install`
-- Build Command: `npm run build`
+- Build Command: `npm run build` 
 
-Do not use `npm install --prefix=..`; that command makes Vercel look for a package file outside the cloned project. Set `NEXT_PUBLIC_API_URL` to the deployed backend URL before publishing the frontend.
+Do not use `npm install --prefix=..`; that command makes Vercel look for a package file outside the cloned project. The API is available on the same deployment under `/api`. Set `MONGODB_URI`, `JWT_SECRET`, and admin environment variables in Vercel. `NEXT_PUBLIC_API_URL` can remain empty for the same-origin setup.
 
 ## Default seeded practicals
 
