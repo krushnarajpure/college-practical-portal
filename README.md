@@ -51,6 +51,17 @@ Use the seeded admin account from `.env`:
 - Deploy the backend and frontend separately or behind a reverse proxy.
 - Ensure uploads and PDF files are persisted appropriately.
 
+### Vercel frontend deployment
+
+Create or update the Vercel project with these settings:
+
+- Repository: `krushnarajpure/college-practical-portal`
+- Root Directory: `frontend`
+- Install Command: `npm install`
+- Build Command: `npm run build`
+
+Do not use `npm install --prefix=..`; that command makes Vercel look for a package file outside the cloned project. Set `NEXT_PUBLIC_API_URL` to the deployed backend URL before publishing the frontend.
+
 ## Default seeded practicals
 
 1. Selection Sort and Insertion Sort
