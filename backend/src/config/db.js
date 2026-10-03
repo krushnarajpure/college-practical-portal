@@ -1,10 +1,15 @@
 import mongoose from 'mongoose';
 
+export function databaseIsDisabled() {
+  const mongoUri = process.env.MONGODB_URI;
+  return !mongoUri || mongoUri === 'your_mongodb_connection_string_here' || mongoUri.trim() === '';
+}
+
 export async function connectDatabase() {
   const mongoUri = process.env.MONGODB_URI;
 
-  if (!mongoUri) {
-    console.log('No MONGODB_URI provided. Running in local fallback mode.');
+  if (databaseIsDisabled()) {
+    console.log('MongoDB is disabled. Backend will run without a database.');
     return false;
   }
 
@@ -15,11 +20,11 @@ export async function connectDatabase() {
     console.log('MongoDB connected successfully.');
     return true;
   } catch (error) {
-    console.error('MongoDB connection failed:', error.message);
+    console.warn('MongoDB connection failed. Continuing in disabled mode:', error.message);
     return false;
   }
 }
 
 export function getMongoStatus() {
-  return mongoose.connection.readyState === 1;
+  return !databaseIsDisabled() && mongoose.connection.readyState === 1;
 }

@@ -24,7 +24,13 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
 app.get('/api/health', (req, res) => {
-  res.json({ ok: true, database: getMongoStatus() ? 'mongodb' : 'fallback' });
+  const databaseMode = getMongoStatus() ? 'mongodb' : 'disabled';
+
+  res.json({
+    success: true,
+    message: 'Backend is running',
+    database: databaseMode,
+  });
 });
 
 app.use('/api/auth', authRoutes);
