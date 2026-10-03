@@ -1,0 +1,71 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg: #f5f5f1;
+  --paper: #ffffff;
+  --ink: #1f2937;
+  --muted: #5f6b7a;
+  --primary: #0b2d45;
+  --secondary: #d4af37;
+  --border: #dfe5ea;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+hr {
+  border-color: var(--border);
+}
+
+code {
+  font-family: 'Courier New', monospace;
+}
+
+p {
+  line-height: 1.7;
+}
+
+main {
+  min-height: 70vh;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+.btn-primary {
+  @apply inline-flex items-center justify-center rounded-md border border-primary bg-primary px-4 py-2 text-sm font-medium text-white transition hover:bg-[#0d3c5d];
+}
+
+.btn-secondary {
+  @apply inline-flex items-center justify-center rounded-md border border-slate-300 bg-white px-4 py-2 text-sm font-medium text-slate-800 transition hover:bg-slate-100;
+}
+
+.card {
+  @apply rounded-lg border border-slate-200 bg-white shadow-soft;
+}
+
+.section-title {
+  @apply text-2xl font-bold text-primary md:text-3xl;
+}
+
+.utility-link {
+  @apply text-primary underline-offset-4 hover:underline;
+}
