@@ -3,6 +3,7 @@ import Practical from '../../../../backend/src/models/Practical.js';
 import { connectDatabase, databaseIsDisabled, getMongoStatus } from '../../../../backend/src/config/db.js';
 
 export const runtime = 'nodejs';
+export const dynamic = 'force-dynamic';
 
 async function getPracticals() {
   if (!databaseIsDisabled()) {
